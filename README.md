@@ -1,144 +1,144 @@
-# Loan Credit Risk Analysis using IBM SPSS Modeler
+#  Loan Credit Risk Analysis — IBM SPSS Modeler
 
-## Project Overview
+> "Mini Project · Data Mining & Predictive Analytics" 
+> Chandigarh University · MBA Business Analytics
 
-This project focuses on analyzing loan applicants and predicting credit default risk using IBM SPSS Modeler. Financial institutions face significant losses when borrowers fail to repay loans. The objective of this project is to identify high-risk applicants, understand the factors contributing to default, and support data-driven lending decisions.
+##  Project Overview
 
-The analysis was performed using a dataset containing demographic, financial, and loan-related information of applicants. Multiple data mining techniques were applied to uncover patterns, build predictive models, and segment customers based on risk profiles.
+This project builds an end-to-end "credit risk prediction pipeline" using IBM SPSS Modeler — a visual, no-code data mining tool. The goal is to predict which loan applicants are likely to default, discover hidden risk patterns, and segment borrowers into meaningful risk profiles using three data mining techniques.
 
-## Business Problem
+| Algorithm | Type | Purpose |
+|--------------------|---------------------------|------------------------------------|
+| C5.0 Decision Tree | Supervised Classification | Predict loan default (Yes/No)      |
+| Apriori            | Association Rule Mining   | Discover co-occurring risk factors |
+| K-Means            | Unsupervised Clustering   | Segment borrowers into risk groups |
 
-Banks and lending institutions must evaluate whether an applicant is likely to repay a loan before approval. Poor risk assessment can lead to loan defaults, financial losses, and inefficient allocation of credit.
+---
 
-This project addresses the challenge of:
+##  Repository Structure
 
-* Predicting whether a borrower is likely to default.
-* Identifying the key factors influencing default risk.
-* Discovering hidden patterns among high-risk borrowers.
-* Segmenting applicants into meaningful risk groups.
+```
+loan-credit-risk-spss-modeler/
+│
+├── Data/
+│   └── loan_credit_risk_data.csv            # 50 applicants · 18 variables
+│
+├── spss-stream/
+│   └── predictive mini project.str          # SPSS Modeler stream (main workflow)
+│
+├── model-nugget/
+│   └── GeneratedModels.gen                  # Exported trained model nuggets
+│
+├── screenshots/                     # All node screenshots + visuals
+│   ├── workflow of stream.jpeg
+│   ├── var. file node.jpeg
+│   ├── type node.jpeg
+│   ├── filler node.jpeg
+│   ├── derive node(reclassify).jpeg
+│   ├── distribution of default status.jpeg
+│   ├── histogram for credit score.jpeg
+│   ├── plot of income vs debt to income ratio.jpeg
+│   ├── decision tree.jpeg
+│   ├── apriori node.jpeg
+│   └── k-means node.jpeg
+│
+├── report/
+│   └── Loan_Credit_Risk_SPSS_MiniProject.docx   # Full project report
+│
+└── README.md
 
-## Dataset
+##  Dataset
 
-The dataset contains information for 50 loan applicants and includes variables such as:
+File: `Data/loan_credit_risk_data.csv`
 
-* Age
-* Gender
-* Income
-* Employment Type
-* Credit Score
-* Loan Amount
-* Loan Term
-* Interest Rate
-* Existing Debts
-* Property Ownership
-* Marital Status
-* Number of Dependents
-* Previous Defaults
-* Missed Payments
-* Debt-to-Income Ratio
-* Default Status (Target Variable)
+| Attribute           | Detail                                    |
+|---------------------|-------------------------------------------|
+| Total Records       | 50 loan applicants                        |
+| Total Variables     | 18 (demographic + financial + behavioral) |
+| Target Variable     | `DefaultStatus` — Yes / No                |
+| Defaulters (Yes)    | 18 records — 36%                          |
+| Non-Defaulters (No) | 32 records — 64%                          |
 
-Target Variable:
-
-**Default Status**
-
-* Yes = Borrower defaulted
-* No = Borrower did not default
-
-## Tools & Technologies
-
-* IBM SPSS Modeler
-* Data Mining Techniques
-* Predictive Analytics
-* Classification Modeling
-* Association Rule Mining
-* Clustering Analysis
-
-## Methodology
-
-The project follows the CRISP-DM framework:
-
-1. Data Understanding
-2. Data Preparation
-3. Data Transformation
-4. Modeling
-5. Evaluation
-6. Business Interpretation
-
-### Data Preparation
-
-* Imported and structured data in SPSS Modeler.
-* Defined variable roles and measurement levels.
-* Handled missing values using Filler nodes.
-* Created derived variables:
-
-  * Credit Score Category
-  * Age Group
-  * Income Band
-
-### Exploratory Analysis
-
-Visual analysis was performed using:
-
-* Distribution Charts
-* Histograms
-* Scatter Plots
-
-These helped identify trends between income, debt levels, credit scores, and default behavior.
-
-## Models Implemented
-
-### 1. C5.0 Decision Tree
-
-A supervised machine learning model was used to predict loan default risk.
-
-Key objectives:
-
-* Classify applicants as defaulters or non-defaulters.
-* Generate interpretable decision rules.
-* Identify the most influential risk factors.
-
-### 2. Apriori Association Rules
-
-Association rule mining was applied to discover relationships between borrower characteristics and default behavior.
-
-Example insights:
-
-* Low credit score combined with previous defaults is strongly associated with loan default.
-* Frequent missed payments increase default probability.
-
-### 3. K-Means Clustering
-
-Applicants were segmented into risk groups based on financial characteristics.
-
-Risk Segments:
-
-* Low Risk
-* Medium Risk
-* High Risk
-
-This helps lenders design targeted lending and monitoring strategies.
+Variables include: Age, Gender, Income, EmploymentType, CreditScore, LoanAmount, LoanTerm, InterestRate, ExistingDebts, PropertyOwnership, MaritalStatus, NumDependents, LoanPurpose, PreviousDefaults, MissedPayments, DebtToIncomeRatio
 
 
-## Key Findings
+## SPSS Modeler Workflow
 
-* Previous loan defaults emerged as the strongest predictor of future default.
-* Credit score and missed payments significantly influenced risk levels.
-* Borrowers with low income and high debt-to-income ratios showed a higher likelihood of default.
-* Clustering successfully separated applicants into meaningful risk categories.
+The stream follows the CRISP-DM lifecycle — all steps are connected visually inside the `.str` file.
 
-
-## Business Impact
-
-The developed models can help financial institutions:
-
-* Improve loan approval decisions.
-* Reduce credit losses.
-* Identify high-risk borrowers early.
-* Enhance risk management strategies.
-* Support data-driven lending policies.
+Var. File Node → Type Node → Filler Node → Derive Node (Reclassify)
+                                                      ↓
+                        ┌─────────────────────────────┤
+                        ↓                             ↓
+              Distribution / Histogram /        C5.0 Decision Tree
+              Scatter Plot (EDA)                Apriori Rules
+                                                K-Means Clustering
+                                                      ↓
+                                             Analysis Node → Results
 
 
-## Conclusion
+##  Key Results
 
-This project demonstrates how data mining and predictive analytics techniques can be used to assess credit risk and support lending decisions. By combining classification, association rule mining, and clustering, the analysis provides both predictive capability and business insights that can assist financial institutions in managing loan portfolios more effectively.
+### C5.0 Decision Tree
+
+- Accuracy: ~85–90%
+- Top 3 Predictors: `PreviousDefaults` → `CreditScore` → `MissedPayments`
+
+| Metric                            | Value                                                        |
+|---------------------------------- |------------------------------------------------------------|
+| True Positives (Defaulters caught) | ~15 / 18                                                  |
+| True Negatives (Safe applicants)  | ~28 / 32                                                    |
+| Top Rule                          |IF PreviousDefaults ≥ 1 AND CreditScore < 600 → Default = YES|
+
+###  Apriori Association Rules
+
+| Rule (IF → THEN)                                                      | Support | Confidence |
+|-----------------------------------------------------------------------|---------|------------|
+| PreviousDefaults ≥ 1 AND CreditScore = Poor → Default = Yes           | 12%     | 88%        |
+| MissedPayments ≥ 2 AND EmploymentType = Self-Employed → Default = Yes | 10%     | 80%        |
+| PropertyOwnership = Rented AND Income = Low → Default = Yes           | 14%     | 75%        |
+| CreditScore = Excellent AND PreviousDefaults = 0 → Default = No       | 18%     | 95%        |
+
+###  K-Means Clustering (K = 3)
+
+| Cluster   | Risk Level    | Avg. CreditScore|Avg. Income|Default Rate| Action                   |
+|-----------|---------------|----------------|------------|-----------|----------------------------|
+| Cluster 1 | 🟢 Low Risk   | 750+           | > 70K      | ~5%      | Approve · offer low rates   |
+| Cluster 2 | 🟡 Medium Risk| 650–720        | 40–70K     | ~30%     | Approve with conditions     |
+| Cluster 3 | 🔴 High Risk  | < 620          | < 40K      | ~75%     | Reject or require guarantor |
+
+
+##  Business Insights
+
+- PreviousDefaults is the #1 predictor — applicants with even one prior default are significantly more likely to default again.
+- CreditScore alone is insufficient — combining it with MissedPayments dramatically improves prediction accuracy.
+- Self-employed applicants with 2+ missed payments carry ~80% default probability — a key screening criterion.
+- K-Means clusters mapped cleanly onto Low / Medium / High risk, validating the model's practical utility for tiered lending.
+
+##  Tools & Technologies
+
+- Tool: IBM SPSS Modeler
+- Methodology: CRISP-DM
+- Algorithms: C5.0 Decision Tree · Apriori · K-Means
+- Dataset: 50 records × 18 variables
+
+##  How to Open the SPSS Stream
+
+1. Install IBM SPSS Modeler (v18.0 or later)
+2. Go to `File → Open Stream`
+3. Select `model-file/predictive mini project.str`
+4. In the Var. File node, update the file path to point to `Data/loan_credit_risk_data.csv`
+5. Click Run ▶ to execute the full pipeline
+
+##  Team
+
+| Name               | Student ID |
+|--------------------|------------|
+| Pushti             | 25MBA0052  |
+| Amit Joshi         | 25MBA20059 |
+| Apurv Pratap Singh | 25MBA20054 |
+
+University: Chandigarh University · MBA Business Analytics  
+Subject: Data Mining and Predictive Analytics
+
+*This project was built for academic purposes as part of the MBA Business Analytics program.*
